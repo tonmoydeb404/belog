@@ -1,11 +1,10 @@
 import { Router } from "express";
-
 import { getHealth } from "../controllers/health.controller";
-import homeRouter from "../routes/home.router";
+import usersRouter from "../routes/users.router";
 
 const router = Router();
 
-router.use("/api/v1/", homeRouter);
+router.use("/api/v1/users", usersRouter);
 // health route
 router.all("/api/v1/health", getHealth);
 

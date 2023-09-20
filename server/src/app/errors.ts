@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import createHttpError from "http-errors";
+import apiResponse from "../helpers/apiResponse";
 
 export const notFoundError = (
   _req: Request,
@@ -19,12 +20,13 @@ export const defaultError = (
   const errorMessage = error?.status
     ? error.message
     : "something wents to wrong";
-  const errorResponse = {
-    errors: {
-      common: errorMessage,
-    },
+
+  const errorResponse = apiResponse({
+    status: "ERROR",
     statusCode: errorStatus,
-  };
+    errors: [],
+    message: errorMessage,
+  });
 
   console.log(error?.message);
 
