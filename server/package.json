@@ -31,6 +31,7 @@
     "http-errors": "^2.0.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^7.5.2",
+    "mongoose-slugger-plugin": "^6.0.0",
     "morgan": "^1.10.0"
   },
   "engines": {

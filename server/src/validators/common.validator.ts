@@ -2,12 +2,25 @@ import { checkSchema, ParamSchema } from "express-validator";
 import * as userServices from "../services/user.service";
 
 // check URL param id is a valid mongoDB id or not
-export const checkParam = (key: string = "id") =>
+export const checkId = (key: string = "id") =>
   checkSchema(
     {
       [key]: {
         isMongoId: {
           errorMessage: `"${key}" is not a valid id.`,
+        },
+      },
+    },
+    ["params"]
+  );
+
+// check URL param slug is a valid slug or not
+export const checkSlug = (key: string = "slug") =>
+  checkSchema(
+    {
+      [key]: {
+        isSlug: {
+          errorMessage: `"${key}" is not a valid.`,
         },
       },
     },

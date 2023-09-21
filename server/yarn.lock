@@ -281,6 +281,11 @@ buffer-equal-constant-time@1.0.1:
   resolved "https://registry.yarnpkg.com/buffer-equal-constant-time/-/buffer-equal-constant-time-1.0.1.tgz#f8e71132f7ffe6e01a5c9697a4c6f3e48d5cc819"
   integrity sha512-zRpUiDwd/xk6ADqPMATG8vc9VPrkck7T07OIx0gnjmJAnHnTVXNQG3vfvWNuiZIkwu9KrKdA1iJKfsfTVxE6NA==
 
+bulk-replace@0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/bulk-replace/-/bulk-replace-0.0.1.tgz#f095682a896abd4b3d9e08de409cc222e213f9dd"
+  integrity sha512-IxLEnfsCYLjlpf6mG7SWpWgA4A8IAT5dAX3FxXHFn+6FTLf3ums771elQ74sj1BCOVanBf6esu0rEC6zgwfmIg==
+
 bytes@3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/bytes/-/bytes-3.1.2.tgz#8b0beeb98605adf1b128fa4386403c009e0221a5"
@@ -546,6 +551,13 @@ has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
+hepburn@^1.2.0:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/hepburn/-/hepburn-1.2.1.tgz#d429f7c90e59357af9e66e8ae71d665eb8714fdc"
+  integrity sha512-v/VUHmiHhNbjDBGxYkwDXzYvfOTIKFquAn0KrPtH1D3Zv539VBPEOGYoWpLnb/FBT9vAx9anQef3noJZ2fPIBw==
+  dependencies:
+    bulk-replace "0.0.1"
+
 http-errors@2.0.0, http-errors@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/http-errors/-/http-errors-2.0.0.tgz#b7774a1486ef73cf7667ac9ae0858c012c57b9d3"
@@ -645,6 +657,21 @@ kareem@2.5.1:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/kareem/-/kareem-2.5.1.tgz#7b8203e11819a8e77a34b3517d3ead206764d15d"
   integrity sha512-7jFxRVm+jD+rkq3kY0iZDJfsO2/t4BBPeEb2qKn2lR/9KhuksYk5hxzfRYWMPV8P/x2d0kHD306YyWLzjjH+uA==
+
+limax@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/limax/-/limax-4.1.0.tgz#b2811ddb1832cf558ba8773001d7c74e3e294506"
+  integrity sha512-vciK5Mx+y+GrJjcVjbEjItzZ6Pbt+LXCb9d3qo3B+HcnTLZYRFyuszD6Hbwk0PDVEmZzS+FA0nT5aBy1HlZgGg==
+  dependencies:
+    hepburn "^1.2.0"
+    lodash.deburr "^4.1.0"
+    pinyin-pro "^3.14.0"
+    speakingurl "^14.0.1"
+
+lodash.deburr@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/lodash.deburr/-/lodash.deburr-4.1.0.tgz#ddb1bbb3ef07458c0177ba07de14422cb033ff9b"
+  integrity sha512-m/M1U1f3ddMCs6Hq2tAsYThTBDaAKFDX3dwDo97GEYzamXi9SqUpjWi/Rrj/gf3X2n8ktwgZrlP1z6E3v/IExQ==
 
 lodash.includes@^4.3.0:
   version "4.3.0"
@@ -760,6 +787,14 @@ mongodb@5.8.1:
     socks "^2.7.1"
   optionalDependencies:
     "@mongodb-js/saslprep" "^1.1.0"
+
+mongoose-slugger-plugin@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/mongoose-slugger-plugin/-/mongoose-slugger-plugin-6.0.0.tgz#e1674ab4128f710d9b3d596e30e7618d87e1fe2f"
+  integrity sha512-r9ihQgS/Tbr8xyXg8IekirE3HECWpuIY59EppuGLWfF7zMowIwJczMNZFFTwXRfm110OGby/yeFgl+hmLeLc6g==
+  dependencies:
+    limax "^4.1.0"
+    semver "^7.5.0"
 
 mongoose@^7.5.2:
   version "7.5.2"
@@ -884,6 +919,11 @@ picomatch@^2.0.4, picomatch@^2.2.1:
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.1.tgz#3ba3833733646d9d3e4995946c1365a67fb07a42"
   integrity sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==
 
+pinyin-pro@^3.14.0:
+  version "3.16.6"
+  resolved "https://registry.yarnpkg.com/pinyin-pro/-/pinyin-pro-3.16.6.tgz#e99c723f1e55a0db3acdfae3327eb4e0679376f9"
+  integrity sha512-l4W4c/K49kj33P5JwpAHkkN/rlxeOwQ07bLhMg8kJVIsdxD3Cpa3aIBF1PKUPt3rxbebawmBoeR1x8VgZmFO5w==
+
 proxy-addr@~2.0.7:
   version "2.0.7"
   resolved "https://registry.yarnpkg.com/proxy-addr/-/proxy-addr-2.0.7.tgz#f19fe69ceab311eeb94b42e70e8c2070f9ba1025"
@@ -946,7 +986,7 @@ safe-buffer@5.2.1, safe-buffer@^5.0.1:
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
-semver@^7.5.3, semver@^7.5.4:
+semver@^7.5.0, semver@^7.5.3, semver@^7.5.4:
   version "7.5.4"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.5.4.tgz#483986ec4ed38e1c6c48c34894a9182dbff68a6e"
   integrity sha512-1bCSESV6Pv+i21Hvpxp3Dx+pSD8lIPt8uVjRrxAUt/nbswYc+tK6Y2btiULjd4+fnq15PX+nqQDC7Oft7WkwcA==
@@ -1027,6 +1067,11 @@ sparse-bitfield@^3.0.3:
   integrity sha512-kvzhi7vqKTfkh0PZU+2D2PIllw2ymqJKujUcyPMd9Y75Nv4nPbGJZXNhxsgdQab2BmlDct1YnfQCguEvHr7VsQ==
   dependencies:
     memory-pager "^1.0.2"
+
+speakingurl@^14.0.1:
+  version "14.0.1"
+  resolved "https://registry.yarnpkg.com/speakingurl/-/speakingurl-14.0.1.tgz#f37ec8ddc4ab98e9600c1c9ec324a8c48d772a53"
+  integrity sha512-1POYv7uv2gXoyGFpBCmpDVSNV74IfsWlDW216UPjbWufNf+bSU6GdbDsxdcxtfwb4xlI3yxzOTKClUosxARYrQ==
 
 statuses@2.0.1:
   version "2.0.1"

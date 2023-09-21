@@ -1,7 +1,7 @@
 import { Router } from "express";
 import * as usersController from "../controllers/users.controller";
 import validate from "../middlewares/validate.middleware";
-import { checkParam } from "../validators/common.validator";
+import { checkId } from "../validators/common.validator";
 import * as usersValidators from "../validators/users.validator";
 
 const usersRouter = Router();
@@ -12,13 +12,13 @@ usersRouter
   .post(usersValidators.postUser, validate, usersController.postUser);
 usersRouter
   .route("/:id")
-  .get(checkParam(), validate, usersController.getUser)
+  .get(checkId(), validate, usersController.getUser)
   .patch(
-    checkParam(),
+    checkId(),
     usersValidators.patchUser,
     validate,
     usersController.patchUser
   )
-  .delete(checkParam(), validate, usersController.deleteUser);
+  .delete(checkId(), validate, usersController.deleteUser);
 
 export default usersRouter;
