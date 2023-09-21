@@ -1,7 +1,7 @@
 export type ApiStatus = "SUCCESS" | "ERROR";
 
-type ApiError = {
-  code: string | number;
+export type ApiError = {
+  key: string | number;
   message: string;
 };
 
