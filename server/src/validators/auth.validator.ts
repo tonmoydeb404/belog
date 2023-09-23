@@ -28,7 +28,7 @@ const emailLoginSchema: Record<keyof EmailLogin, ParamSchema> = {
     },
   },
 };
-export const postLogin = oneOf([
-  ...checkSchema(usernameLoginSchema),
-  ...checkSchema(emailLoginSchema),
-]);
+export const postLogin = oneOf(
+  [checkSchema(usernameLoginSchema), checkSchema(emailLoginSchema)],
+  { message: "Use email or username." }
+);
