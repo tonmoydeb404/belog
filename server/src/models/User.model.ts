@@ -1,4 +1,5 @@
 import { Schema, model } from "mongoose";
+import { sluggerPlugin } from "mongoose-slugger-plugin";
 import {
   IUser,
   IUserMethods,
@@ -24,7 +25,6 @@ const userSchema = new Schema<IUser, {}, IUserMethods>(
     username: {
       type: String,
       required: true,
-      unique: true,
     },
     email: {
       type: String,
@@ -68,6 +68,15 @@ const userSchema = new Schema<IUser, {}, IUserMethods>(
     },
   }
 );
+
+// create index for username
+userSchema.index({ username: 1 }, { name: "user_username", unique: true });
+// config auto username generator
+userSchema.plugin(sluggerPlugin, {
+  slugPath: "username",
+  generateFrom: ["firstName", "lastName"],
+  index: "user_username",
+});
 
 // password hashing on save
 userSchema.pre("save", async function (next) {

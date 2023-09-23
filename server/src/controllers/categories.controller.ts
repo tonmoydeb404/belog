@@ -19,10 +19,10 @@ export const getCategory = asyncWrapper(async (req, res) => {
 
 export const getCategoryBySlug = asyncWrapper(async (req, res) => {
   const { slug } = matchedData(req);
-  const category = await categoryService.getOne("slug", slug);
+  const category = await categoryService.getOne("slug", slug).populate("posts");
   if (!category) throw createHttpError(404, "Category not found.");
 
-  res.json(apiResponse({ results: category.toObject() }));
+  res.json(apiResponse({ results: category.toObject({ virtuals: true }) }));
 });
 
 export const postCategory = asyncWrapper(async (req, res) => {

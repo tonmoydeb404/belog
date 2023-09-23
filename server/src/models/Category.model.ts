@@ -20,12 +20,19 @@ const categorySchema = new Schema<ICategory>(
 );
 
 // create index for slug
-categorySchema.index({ slug: 1 }, { name: "slug", unique: true });
+categorySchema.index({ slug: 1 }, { name: "category_slug", unique: true });
 // config auto slug generator
 categorySchema.plugin(sluggerPlugin, {
   slugPath: "slug",
   generateFrom: ["title"],
-  index: "slug",
+  index: "category_slug",
+});
+
+// posts virtuals
+categorySchema.virtual("posts", {
+  ref: "post",
+  localField: "_id",
+  foreignField: "categories",
 });
 
 const Category = model("category", categorySchema);

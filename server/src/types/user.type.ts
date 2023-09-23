@@ -1,3 +1,5 @@
+import { PartialBy } from "./common.type";
+
 export type UserAccountStatus = "ACTIVE" | "DEACTIVE" | "BANNED";
 export type UserRole = "ADMIN" | "EDITOR" | "AUTHOR";
 
@@ -23,9 +25,9 @@ export interface IUserMethods {
 }
 
 // SERVICE types
-export type UserCreate = Pick<
-  IUser,
-  "firstName" | "lastName" | "username" | "email" | "password"
+export type UserCreate = PartialBy<
+  Pick<IUser, "firstName" | "lastName" | "username" | "email" | "password">,
+  "username"
 >;
 export type UserUpdate = Partial<
   Pick<IUser, "firstName" | "lastName" | "username" | "email" | "password">

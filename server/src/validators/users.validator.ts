@@ -32,6 +32,7 @@ const postUserSchema: Record<keyof UserCreate, ParamSchema> = {
   },
   username: {
     ...usernameSchema,
+    optional: true,
   },
 };
 export const postUser = checkSchema(postUserSchema, ["body"]);
