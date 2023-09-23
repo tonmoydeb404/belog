@@ -124,7 +124,7 @@ const patchPostSchema: Record<keyof PostUpdate | "categories.*", ParamSchema> =
     status: {
       optional: true,
       isIn: {
-        options: postStatuses,
+        options: [postStatuses],
         errorMessage: "Invalid status.",
       },
     },
