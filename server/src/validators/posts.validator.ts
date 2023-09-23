@@ -20,7 +20,10 @@ export const slugSchema: ParamSchema = {
 };
 
 // Category create data schema
-const postPostSchema: Record<keyof PostCreate | "categories.*", ParamSchema> = {
+const postPostSchema: Record<
+  keyof Omit<PostCreate, "author"> | "categories.*",
+  ParamSchema
+> = {
   title: {
     trim: true,
     notEmpty: {
@@ -37,10 +40,6 @@ const postPostSchema: Record<keyof PostCreate | "categories.*", ParamSchema> = {
   slug: {
     ...slugSchema,
     optional: true,
-  },
-  author: {
-    isMongoId: true,
-    errorMessage: "invalid author",
   },
   categories: {
     optional: true,

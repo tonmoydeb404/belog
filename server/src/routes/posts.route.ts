@@ -27,6 +27,8 @@ postsRouter
     postsController.patchPost
   )
   .delete(authenticate, checkId(), validate, postsController.deletePost);
-postsRouter.route("/s/:slug").get(checkSlug(), postsController.getPostBySlug);
+postsRouter
+  .route("/s/:slug")
+  .get(checkSlug(), validate, postsController.getPostBySlug);
 
 export default postsRouter;

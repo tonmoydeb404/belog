@@ -26,18 +26,18 @@ export const getPostBySlug = asyncWrapper(async (req, res) => {
 });
 
 export const postPost = asyncWrapper(async (req, res) => {
-  const { title, author, content, categories, meta, slug, status, thumbnail } =
+  const { title, content, categories, meta, slug, status, thumbnail } =
     matchedData(req) as PostCreate;
 
   const post = await postService.create({
     title,
-    author,
     content,
     categories,
     meta,
     slug,
     status,
     thumbnail,
+    author: req.user._id,
   });
 
   res.status(201).json(

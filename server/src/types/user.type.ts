@@ -1,3 +1,4 @@
+import { Types } from "mongoose";
 import { AuthPayload } from "./auth.type";
 import { PartialBy } from "./common.type";
 
@@ -5,7 +6,7 @@ export type UserAccountStatus = "ACTIVE" | "DEACTIVE" | "BANNED";
 export type UserRole = "ADMIN" | "EDITOR" | "AUTHOR";
 
 export interface IUser {
-  _id: string;
+  _id: typeof Types.ObjectId;
   firstName: string;
   lastName: string;
   username: string;

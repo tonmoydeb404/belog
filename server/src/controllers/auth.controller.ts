@@ -43,7 +43,9 @@ export const getLogout = asyncWrapper(async (_req, res) => {
 });
 
 export const getRefresh = asyncWrapper(async (req, res) => {
-  const user = await userService.getOne("_id", req.user._id);
+  const user = await userService
+    .getOne("_id", req.user._id)
+    .select("+password");
 
   const { token, payload } = user.generateAuthToken();
 

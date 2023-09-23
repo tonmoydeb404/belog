@@ -37,7 +37,6 @@ export type PostCreate = PartialBy<
   >,
   "slug" | "meta" | "thumbnail" | "status" | "categories"
 >;
-// TODO: Remove author after implementing authentication
 
 export type PostUpdate = Partial<
   Pick<
