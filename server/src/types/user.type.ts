@@ -1,3 +1,4 @@
+import { AuthPayload } from "./auth.type";
 import { PartialBy } from "./common.type";
 
 export type UserAccountStatus = "ACTIVE" | "DEACTIVE" | "BANNED";
@@ -19,7 +20,7 @@ export interface IUser {
 
 export interface IUserMethods {
   matchPassword(password: string): Promise<boolean>;
-  generateAuthToken(): Promise<{ token: string }>;
+  generateAuthToken(): { token: string; payload: AuthPayload };
   generateEmailVerifyToken(): Promise<{ token: string }>;
   generatePasswordResetToken(): Promise<{ token: string }>;
 }

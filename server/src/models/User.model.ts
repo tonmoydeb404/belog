@@ -1,5 +1,7 @@
 import { Schema, model } from "mongoose";
 import { sluggerPlugin } from "mongoose-slugger-plugin";
+import { authExpire } from "../config/token-expire";
+import { getAuthPayload } from "../helpers/authPayload";
 import {
   IUser,
   IUserMethods,
@@ -104,10 +106,10 @@ userSchema.methods.matchPassword = function (password) {
 };
 
 // generate token for authentication
-userSchema.methods.generateAuthToken = async function () {
-  // TODO:COMPLETE Payload
-  const token = generateToken({}, "1d", this.password);
-  return { token };
+userSchema.methods.generateAuthToken = function () {
+  const payload = getAuthPayload(this);
+  const token = generateToken(payload, authExpire, this.password);
+  return { token, payload };
 };
 
 // generate token for email verification
