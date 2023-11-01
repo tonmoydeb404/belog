@@ -3,34 +3,27 @@ import { AuthPayload } from "./auth.type";
 import { PartialBy } from "./common.type";
 
 export type UserAccountStatus = "ACTIVE" | "DEACTIVE" | "BANNED";
-export type UserRole = "ADMIN" | "EDITOR" | "AUTHOR";
+export type UserRole = "ADMIN" | "EDITOR" | "AUTHOR" | "USER";
 
 export interface IUser {
   _id: typeof Types.ObjectId;
-  firstName: string;
-  lastName: string;
-  username: string;
+  name: string;
   email: string;
-  emailVerified: boolean;
-  password: string;
+  avatar: string;
   accountStatus: UserAccountStatus;
   roles: UserRole[];
   createdAt: number;
   updatedAt: number;
+  googleId: string | null;
+  githubId: string | null;
 }
 
 export interface IUserMethods {
-  matchPassword(password: string): Promise<boolean>;
   generateAuthToken(): { token: string; payload: AuthPayload };
-  generateEmailVerifyToken(): Promise<{ token: string }>;
-  generatePasswordResetToken(): Promise<{ token: string }>;
 }
 
 // SERVICE types
 export type UserCreate = PartialBy<
-  Pick<IUser, "firstName" | "lastName" | "username" | "email" | "password">,
-  "username"
->;
-export type UserUpdate = Partial<
-  Pick<IUser, "firstName" | "lastName" | "username" | "email" | "password">
+  Pick<IUser, "name" | "email" | "avatar" | "googleId" | "githubId">,
+  "googleId" | "githubId"
 >;

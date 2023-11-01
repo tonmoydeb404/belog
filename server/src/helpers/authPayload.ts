@@ -4,12 +4,14 @@ import { IUser } from "../types/user.type";
 export const getAuthPayload = (user: IUser): AuthPayload => {
   return {
     _id: user._id,
-    firstName: user.firstName,
-    lastName: user.lastName,
-    username: user.username,
+    name: user.name,
+    avatar: user.avatar,
     email: user.email,
-    emailVerified: user.emailVerified,
+    githubId: user.githubId,
+    googleId: user.googleId,
     roles: user.roles,
     accountStatus: user.accountStatus,
+    createdAt: user.createdAt,
+    updatedAt: user.updatedAt,
   };
 };

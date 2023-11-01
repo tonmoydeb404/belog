@@ -3,24 +3,13 @@ import { IUser } from "./user.type";
 export type AuthPayload = Pick<
   IUser,
   | "_id"
-  | "firstName"
-  | "lastName"
+  | "name"
   | "email"
-  | "emailVerified"
+  | "avatar"
   | "accountStatus"
   | "roles"
-  | "username"
+  | "githubId"
+  | "googleId"
+  | "createdAt"
+  | "updatedAt"
 >;
-
-// LOGIN types
-export type EmailLogin = {
-  email: string;
-  password: string;
-};
-
-export type UsernameLogin = {
-  password: string;
-  username: string;
-};
-
-export type AuthLogin = EmailLogin | UsernameLogin;
