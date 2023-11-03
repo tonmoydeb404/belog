@@ -1,32 +1,16 @@
-import { authCookie, authCookieHTTP } from "../config/cookie-options";
+import createHttpError from "http-errors";
+import passport, { AuthenticateOptions } from "passport";
 import apiResponse from "../helpers/apiResponse";
 import asyncWrapper from "../helpers/asyncWrapper";
-import * as userService from "../services/user.service";
-
-export const getCallback = asyncWrapper(async (req, res) => {
-  const token = req.authInfo;
-  const payload = req.user;
-
-  // add credantials in cookies
-  res.cookie("token", token, authCookieHTTP);
-  res.cookie("logged_in", true, authCookie);
-
-  res.status(200).json(
-    apiResponse({
-      message: "Successfully logged in.",
-      statusCode: 200,
-      results: { payload, token },
-    })
-  );
-});
+import loadEnv from "../helpers/loadEnv";
 
 export const getLogout = asyncWrapper(async (req, res) => {
   req.logOut({ keepSessionInfo: false }, (err) => {
-    if (err) console.log(err);
+    if (err) return console.log(err);
 
     // remove credantials from cookies
-    res.clearCookie("token");
-    res.cookie("logged_in", false, authCookie);
+    // res.clearCookie("token");
+    // res.cookie("logged_in", false, authCookie);
 
     res.status(200).json(
       apiResponse({
@@ -40,19 +24,74 @@ export const getLogout = asyncWrapper(async (req, res) => {
 });
 
 export const getRefresh = asyncWrapper(async (req, res) => {
-  const user = await userService.getOne("_id", req.user._id);
+  // refresh session
+  req.session.touch();
 
-  const { token, payload } = user.generateAuthToken();
-
-  // add credantials in cookies
-  res.cookie("token", token, authCookieHTTP);
-  res.cookie("logged_in", true, authCookie);
+  // send refreshed cookies to the response
+  res.cookie("belog", req.cookies.belog, {
+    expires: new Date(Date.now() + req.session.cookie.maxAge),
+    httpOnly: true,
+  });
 
   res.status(200).json(
     apiResponse({
-      message: "Auth token refreshed.",
+      message: "Auth refreshed.",
       statusCode: 200,
-      results: { payload, token },
+      results: { user: req.user },
     })
   );
 });
+
+export const getResult = asyncWrapper(async (req, res) => {
+  if (req.isAuthenticated()) {
+    // Continue login success from here
+    res.status(200).json(
+      apiResponse({
+        status: "SUCCESS",
+        results: {
+          user: req.user,
+        },
+        message: "Authentication successfull",
+      })
+    );
+  } else {
+    // continue login failed from here
+    const errors = req.flash("error");
+    throw createHttpError(403, errors[0] || "Authentication failed");
+  }
+});
+
+export const getOauth = (auth: string, options: AuthenticateOptions) =>
+  asyncWrapper(async (req, res, next) => {
+    // prepare state for authentication
+    const state = Buffer.from(
+      JSON.stringify({ goTo: req.query?.goTo })
+    ).toString("base64");
+
+    const authenticator = passport.authenticate(auth, {
+      ...options,
+      state,
+    });
+
+    return authenticator(req, res, next);
+  });
+
+export const getOauthCallback = (auth: string, options: AuthenticateOptions) =>
+  asyncWrapper(async (req, res, next) => {
+    const { state } = req.query;
+    const { goTo } = JSON.parse(
+      Buffer.from(state as string, "base64").toString()
+    );
+
+    let redirectURL = loadEnv.CLIENT_AUTH_REDIRECT + "?";
+    if (goTo) redirectURL += `&goTo=${goTo}`;
+
+    const authenticator = passport.authenticate(auth, {
+      ...options,
+      failureFlash: true,
+      failureRedirect: `${redirectURL}&auth=failed`,
+      successRedirect: `${redirectURL}&auth=success`,
+    });
+
+    return authenticator(req, res, next);
+  });
