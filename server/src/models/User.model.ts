@@ -1,13 +1,10 @@
 import { Schema, model } from "mongoose";
-import { authExpire } from "../config/token-expire";
-import { getAuthPayload } from "../helpers/authPayload";
 import {
   IUser,
   IUserMethods,
   UserAccountStatus,
   UserRole,
 } from "../types/user.type";
-import { generateToken } from "../utils/token";
 
 const userRoles: UserRole[] = ["ADMIN", "EDITOR", "AUTHOR", "USER"];
 const userStatuses: UserAccountStatus[] = ["ACTIVE", "DEACTIVE", "BANNED"];
@@ -58,13 +55,6 @@ const userSchema = new Schema<IUser, {}, IUserMethods>(
     timestamps: true,
   }
 );
-
-// generate token for authentication
-userSchema.methods.generateAuthToken = function () {
-  const payload = getAuthPayload(this);
-  const token = generateToken(payload, authExpire, this.password);
-  return { token, payload };
-};
 
 const User = model("user", userSchema);
 

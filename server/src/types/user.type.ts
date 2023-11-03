@@ -1,5 +1,4 @@
 import { Types } from "mongoose";
-import { AuthPayload } from "./auth.type";
 import { PartialBy } from "./common.type";
 
 export type UserAccountStatus = "ACTIVE" | "DEACTIVE" | "BANNED";
@@ -18,9 +17,7 @@ export interface IUser {
   githubId: string | null;
 }
 
-export interface IUserMethods {
-  generateAuthToken(): { token: string; payload: AuthPayload };
-}
+export interface IUserMethods {}
 
 // SERVICE types
 export type UserCreate = PartialBy<
