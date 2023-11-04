@@ -8,10 +8,6 @@ export const getLogout = asyncWrapper(async (req, res) => {
   req.logOut({ keepSessionInfo: false }, (err) => {
     if (err) return console.log(err);
 
-    // remove credantials from cookies
-    // res.clearCookie("token");
-    // res.cookie("logged_in", false, authCookie);
-
     res.status(200).json(
       apiResponse({
         message: "Logged out successfully",
