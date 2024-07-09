@@ -1,0 +1,3 @@
+.app_container {
+  @apply w-full md:w-[767px] mx-auto px-5;
+}
