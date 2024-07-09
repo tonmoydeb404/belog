@@ -1,8 +1,14 @@
+import { AppLayout } from "@/layouts/app-layout";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Ubuntu } from "next/font/google";
 import "../styles/main.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const ubuntu = Ubuntu({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
+  display: "swap",
+  variable: "--font-ubuntu",
+});
 
 export const metadata: Metadata = {
   title: "Belog",
@@ -15,8 +21,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className="dark">
+      <body className={`${ubuntu.variable}`}>
+        <AppLayout>{children}</AppLayout>
+      </body>
     </html>
   );
 }

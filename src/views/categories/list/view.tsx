@@ -1,7 +1,23 @@
+import Breadcrumb from "@/components/breadcrumb";
+import { CategoryCard } from "@/components/cards/category-card";
+import { routes } from "@/router/routes";
+import { categories } from "@/views/home";
+
 type Props = {};
 
-const CategoriesListViews = (props: Props) => {
-  return <div>CategoriesListViews</div>;
-};
+export const CategoriesListViews = (props: Props) => {
+  return (
+    <div className="mt-10">
+      <div className="mb-10">
+        <h3 className="font-semibold text-3xl mb-2">Categories</h3>
+        <Breadcrumb links={[{ title: "Home", path: routes.root }]} />
+      </div>
 
-export default CategoriesListViews;
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-20">
+        {categories.map((category) => (
+          <CategoryCard category={category} key={category.slug} />
+        ))}
+      </div>
+    </div>
+  );
+};

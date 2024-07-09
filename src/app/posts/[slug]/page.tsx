@@ -1,7 +1,9 @@
+import { PostsDetailsView } from "@/views/posts";
+
 type Props = {};
 
 const PostsDetailsPage = (props: Props) => {
-  return <div>PostsDetailsPage</div>;
+  return <PostsDetailsView />;
 };
 
 export default PostsDetailsPage;

@@ -1,7 +1,9 @@
+import { CategoriesListViews } from "@/views/categories";
+
 type Props = {};
 
 const CategoryPage = (props: Props) => {
-  return <div>CategoryPage</div>;
+  return <CategoriesListViews />;
 };
 
 export default CategoryPage;

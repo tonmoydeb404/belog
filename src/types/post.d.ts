@@ -3,4 +3,5 @@ export interface PostInterface {
   description: string;
   slug: string;
   createdAt: string;
+  content: string;
 }
