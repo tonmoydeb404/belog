@@ -12,6 +12,7 @@ export const AppLayout = (props: Props) => {
   return (
     <>
       <Header />
+      {/* <Navbar /> */}
       <div className="app_container">{children}</div>
       <Footer />
     </>
