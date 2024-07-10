@@ -10,3 +10,8 @@ const PostsPage = async (props: Props) => {
 };
 
 export default PostsPage;
+
+// Others ----------------------------------------------------------------------
+export const metadata = {
+  title: "Posts",
+};

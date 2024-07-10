@@ -9,3 +9,8 @@ const CategoryPage = async (props: Props) => {
 };
 
 export default CategoryPage;
+
+// Others ----------------------------------------------------------------------
+export const metadata = {
+  title: "Categories",
+};
