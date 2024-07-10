@@ -1,11 +1,15 @@
 import Breadcrumb from "@/components/breadcrumb";
 import { CategoryCard } from "@/components/cards/category-card";
 import { routes } from "@/router/routes";
-import { categories } from "@/views/home";
+import { CategoryInterface } from "@/types/category";
 
-type Props = {};
+type Props = {
+  categories: CategoryInterface[];
+};
 
 export const CategoriesListViews = (props: Props) => {
+  const { categories } = props;
+
   return (
     <div className="mt-10">
       <div className="mb-10">

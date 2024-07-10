@@ -1,9 +1,11 @@
+import { getCategoriesList } from "@/lib/hygraph/services";
 import { CategoriesListViews } from "@/views/categories";
 
 type Props = {};
 
-const CategoryPage = (props: Props) => {
-  return <CategoriesListViews />;
+const CategoryPage = async (props: Props) => {
+  const categoriesResponse = await getCategoriesList();
+  return <CategoriesListViews categories={categoriesResponse.data || []} />;
 };
 
 export default CategoryPage;

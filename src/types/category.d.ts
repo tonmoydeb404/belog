@@ -1,7 +1,10 @@
+import { PostInterface } from "./post";
+
 export interface CategoryInterface {
   title: string;
   description: string;
   slug: string;
   createdAt: string;
-  totalPosts: number;
+  featured: boolean;
+  posts: PostInterface[];
 }

@@ -1,11 +1,14 @@
 import Breadcrumb from "@/components/breadcrumb";
 import { BlogCard } from "@/components/cards/blog-card";
 import { routes } from "@/router/routes";
-import { posts } from "@/views/home";
+import { PostInterface } from "@/types/post";
 
-type Props = {};
+type Props = {
+  posts: PostInterface[];
+};
 
 export const PostListView = (props: Props) => {
+  const { posts } = props;
   return (
     <div className="mt-10">
       <div className="mb-10">

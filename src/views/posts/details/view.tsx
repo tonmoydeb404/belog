@@ -1,12 +1,14 @@
 import Breadcrumb from "@/components/breadcrumb";
 import { routes } from "@/router/routes";
-import { posts } from "@/views/home";
+import { PostInterface } from "@/types/post";
 
-type Props = {};
-
-const post = posts[0];
+type Props = {
+  post: PostInterface;
+};
 
 export const PostsDetailsView = (props: Props) => {
+  const { post } = props;
+
   return (
     <div className="mt-10">
       <div className="mb-10">
@@ -21,10 +23,12 @@ export const PostsDetailsView = (props: Props) => {
         <p className="text-base">{post.description}</p>
       </div>
 
-      <article
-        dangerouslySetInnerHTML={{ __html: post.content }}
-        className="prose prose-invert prose-sm w-full max-w-full"
-      />
+      {post.content && (
+        <article
+          dangerouslySetInnerHTML={{ __html: post.content.html }}
+          className="prose prose-invert prose-sm w-full max-w-full"
+        />
+      )}
     </div>
   );
 };

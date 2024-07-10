@@ -1,14 +1,16 @@
 import Breadcrumb from "@/components/breadcrumb";
 import { BlogCard } from "@/components/cards/blog-card";
 import { routes } from "@/router/routes";
-import { categories, posts } from "@/views/home";
+import { CategoryInterface } from "@/types/category";
 import { LucideBookmark } from "lucide-react";
 
-type Props = {};
-
-const category = categories[0];
+type Props = {
+  category: CategoryInterface;
+};
 
 export const CategoriesDetailsView = (props: Props) => {
+  const { category } = props;
+
   return (
     <div className="mt-10">
       <div className="flex items-start justify-between gap-3 mb-10">
@@ -28,7 +30,7 @@ export const CategoriesDetailsView = (props: Props) => {
       </div>
 
       <div className="flex flex-col gap-8">
-        {posts.map((post) => (
+        {category.posts.map((post) => (
           <BlogCard post={post} key={post.slug} />
         ))}
       </div>
