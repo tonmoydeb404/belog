@@ -1,6 +1,8 @@
+import dynamic from "next/dynamic";
 import { ReactNode } from "react";
-import Footer from "./footer";
 import Header from "./header";
+
+const Footer = dynamic(() => import("./footer"), { ssr: false });
 
 type Props = {
   children: ReactNode;
@@ -12,7 +14,6 @@ export const AppLayout = (props: Props) => {
   return (
     <>
       <Header />
-      {/* <Navbar /> */}
       <div className="app_container">{children}</div>
       <Footer />
     </>
