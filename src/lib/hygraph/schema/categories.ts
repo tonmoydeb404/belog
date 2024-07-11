@@ -42,7 +42,7 @@ query GetCategoriesListFeatured {
 `;
 
 export const getCategorySlugSchema = (id: string) => `
-query GetCategoriesDetails {
+query GetCategorySlug {
   category(where: {id: "${id}"}) {
     slug
   }
