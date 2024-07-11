@@ -1,4 +1,4 @@
-export const hygraphFetch = (schema: string) => {
+export const hygraphFetch = (schema: string, tags: string[] = []) => {
   const HYGRAPH_ENDPOINT = process.env.HYGRAPH_ENDPOINT as string;
   return fetch(HYGRAPH_ENDPOINT, {
     method: "POST",
@@ -8,5 +8,6 @@ export const hygraphFetch = (schema: string) => {
     body: JSON.stringify({
       query: schema,
     }),
+    next: { tags },
   });
 };

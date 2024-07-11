@@ -9,21 +9,27 @@ import {
 } from "../schema";
 
 export const getCategoriesList = asyncWrapper(async () => {
-  const response = await hygraphFetch(getCategoriesListSchema());
+  const response = await hygraphFetch(getCategoriesListSchema(), [
+    "categories",
+  ]);
   const json = await response.json();
 
   return json.data.categories as CategoryInterface[];
 });
 
 export const getCategoriesListFeatured = asyncWrapper(async () => {
-  const response = await hygraphFetch(getCategoriesListFeaturedSchema());
+  const response = await hygraphFetch(getCategoriesListFeaturedSchema(), [
+    "categories-featured",
+  ]);
   const json = await response.json();
 
   return json.data.categories as CategoryInterface[];
 });
 
 export const getCategoriesDetails = asyncWrapper(async (slug: string) => {
-  const response = await hygraphFetch(getCategoriesDetailsSchema(slug));
+  const response = await hygraphFetch(getCategoriesDetailsSchema(slug), [
+    `categories-${slug}`,
+  ]);
   const json = await response.json();
 
   return json.data.category as CategoryInterface;

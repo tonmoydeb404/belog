@@ -12,14 +12,17 @@ export const POST = async (request: Request) => {
 
   switch (payload.operation) {
     case "publish":
-      revalidateTag("featured-categories");
-      revalidateTag(`category-${slug}`);
+      revalidateTag("categories");
+      revalidateTag("categories-featured");
+      revalidateTag(`categories-${slug}`);
       break;
     case "unpublish":
-      revalidateTag("featured-categories");
+      revalidateTag("categories");
+      revalidateTag("categories-featured");
       revalidatePath(routes.categories.details(slug));
     case "delete":
-      revalidateTag("featured-categories");
+      revalidateTag("categories");
+      revalidateTag("categories-featured");
       revalidatePath(routes.categories.details(slug));
     default:
       return Response.json({
