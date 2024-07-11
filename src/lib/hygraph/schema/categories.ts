@@ -1,6 +1,6 @@
 export const getCategoriesListSchema = () => `
 query GetCategoriesList {
-  categories {
+  categories(first: 1000) {
     title
     slug
     description
@@ -32,7 +32,7 @@ query GetCategoriesDetails {
 
 export const getCategoriesListFeaturedSchema = () => `
 query GetCategoriesListFeatured {
-  categories(where: {featured: true}) {
+  categories(where: {featured: true}, first:1000) {
     title
     slug
     description

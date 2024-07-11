@@ -1,6 +1,6 @@
 export const getPostsListSchema = () => `
 query GetPostsList {
-  posts {
+  posts(first: 1000) {
     title
     slug
     description
@@ -32,7 +32,7 @@ query GetPostsDetails {
 
 export const getPostsListFeaturedSchema = () => `
 query GetPostsListFeatured {
-  posts(where: {featured: true}) {
+  posts(where: {featured: true}, first: 1000) {
     title
     slug
     description
