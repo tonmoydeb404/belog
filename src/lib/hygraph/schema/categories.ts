@@ -40,3 +40,11 @@ query GetCategoriesListFeatured {
   }
 }
 `;
+
+export const getCategorySlugSchema = (id: string) => `
+query GetCategoriesDetails {
+  category(where: {id: "${id}"}) {
+    slug
+  }
+}
+`;

@@ -5,6 +5,7 @@ import {
   getCategoriesDetailsSchema,
   getCategoriesListFeaturedSchema,
   getCategoriesListSchema,
+  getCategorySlugSchema,
 } from "../schema";
 
 export const getCategoriesList = asyncWrapper(async () => {
@@ -26,4 +27,11 @@ export const getCategoriesDetails = asyncWrapper(async (slug: string) => {
   const json = await response.json();
 
   return json.data.category as CategoryInterface;
+});
+
+export const getCategorySlug = asyncWrapper(async (id: string) => {
+  const response = await hygraphFetch(getCategorySlugSchema(id));
+  const json = await response.json();
+
+  return json.data.category as { slug: string };
 });
