@@ -5,8 +5,10 @@ import { revalidatePath, revalidateTag } from "next/cache";
 const revalidateCategory = async (id: string) => {
   const categoryResponse = await getCategorySlug(id);
 
-  if (categoryResponse.error || !categoryResponse.data)
-    return "Could not revalidate category";
+  if (categoryResponse.error || !categoryResponse.data) {
+    // return "Could not revalidate category";
+    return categoryResponse;
+  }
 
   revalidateTag(`categories-${categoryResponse.data.slug}`);
 
