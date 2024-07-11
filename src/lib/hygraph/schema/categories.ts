@@ -12,6 +12,7 @@ query GetCategoriesList {
 export const getCategoriesDetailsSchema = (slug: string) => `
 query GetCategoriesDetails {
   category(where: {slug: "${slug}"}) {
+    id
     title
     slug
     description

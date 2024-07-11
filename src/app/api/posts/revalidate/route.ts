@@ -20,7 +20,7 @@ export const POST = async (request: Request) => {
 
   const operation = payload?.operation;
   const slug = payload?.data?.slug;
-  const categoryId = payload?.data?.id;
+  const categoryId = payload?.data?.category?.id;
   let message;
 
   if (!operation || !slug)

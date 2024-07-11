@@ -39,7 +39,5 @@ export const getCategorySlug = asyncWrapper(async (id: string) => {
   const response = await hygraphFetch(getCategorySlugSchema(id));
   const json = await response.json();
 
-  console.log({ json });
-
   return json.data.category as { slug: string };
 });
